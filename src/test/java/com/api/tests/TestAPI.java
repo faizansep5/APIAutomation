@@ -1,5 +1,6 @@
 package com.api.tests;
 
+import com.api.authentication.AuthenticationService;
 import com.api.base.BaseService;
 import com.api.models.request.AddRequest;
 import com.api.usermanagement.UserManagementService;
@@ -10,6 +11,7 @@ public class TestAPI extends BaseService {
     @Test
     public void apiTest() {
         UserManagementService umService = new UserManagementService();
+        AuthenticationService authService = new AuthenticationService();
         AddRequest addRequest = new AddRequest();
 
         AddRequest.DataDTO data = new AddRequest.DataDTO();
@@ -22,7 +24,8 @@ public class TestAPI extends BaseService {
         addRequest.setData(data);
 
         Response res = umService.add(addRequest);
-        System.out.println(res.asPrettyString());
+        Response res1 = authService.add(addRequest);
+        System.out.println(res1.asPrettyString());
     }
 
 }
